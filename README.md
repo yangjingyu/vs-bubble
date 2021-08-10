@@ -4,32 +4,38 @@
 
 ## 使用
 
-```html
-<div id="full" style="width: 100%;">
-  <button id="toggle">{}</button>
-</div>
-```
-
 ```js
-const full = new Full({
-  // 需要全屏的容器
-  el: document.querySelector('#full'),
-  // 切换按钮
-  toggle: document.querySelector('#toggle'),
-  // 强制旋转
-  forceRotate: false,
-  // 自动旋转
-  autoRotate: false
-});
+import VsBubble from 'vs-bubble';
+const vsBubble = new VsBubble();
+
+vsBubble.start([10, 100]);
+vsBubble.start(
+  100,
+  (current) => {},
+  () => {}
+);
 ```
 
 ## 参数
 
-- Selector 为 querySelector 选择器 如：'#ID' '.CLASS'
+| 参数名      | 描述     | 可选值 | 默认值 |
+| ----------- | -------- | ------ | ------ |
+| animateTime | 动画时长 | number | 3000   |
+| fps         | 帧数     | number | 30     |
 
-| 参数名      | 描述     | 可选值                      | 默认值 |
-| ----------- | -------- | --------------------------- | ------ |
-| el          | 全屏容器 | `HTMLElement` or `Selector` | null   |
-| toggle      | 切换按钮 | `HTMLElement` or `Selector` | null   |
-| forceRotate | 强制旋转 | `boolean`                   | false  |
-| autoRotate | 自动旋转 | `boolean`                   | false  |
+# 方法
+
+| 方法名 | 描述     | 参数                         |
+| ------ | -------- | ---------------------------- |
+| start  | 开始动画 | value,onAnimate,onEndAnimate |
+
+1. value 可以为数字或二位数组
+
+- 30 结束值为 30
+- [30, 100] 开始值为 30 结束值为 100
+
+2. onAnimate 进行中回调
+
+- current, frameIndex, values
+
+3. onEndAnimate 结束回调
