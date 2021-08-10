@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vs-bubble</title>
+</head>
+
+<body>
+  <div id="bubble">0</div>
+  <button id="plus10">+10</button>
+  <button id="plus100">+100</button>
+  <button id="plus1000">+1000</button>
+  <script type="module">
+    import VsBubble from './index.js'
+    const vsBubble = new VsBubble()
+    let count = 0
+    const content = document.querySelector('#bubble')
+
+    const plus = (num = 0) => {
+      let newVal = count + num
+      vsBubble.start([count, newVal], (current) => {
+        content.innerText = Math.floor(current)
+      }, () => {
+        console.log('end');
+        content.innerText = newVal
+      })
+      count = newVal
+    }
+    document.querySelector('#plus10').onclick = () => {
+      plus(10)
+    }
+    document.querySelector('#plus100').onclick = () => {
+      plus(100)
+    }
+    document.querySelector('#plus1000').onclick = () => {
+      plus(1000)
+    }
+  </script>
+</body>
+
+</html>
